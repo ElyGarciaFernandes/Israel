@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class UserRepository {
     private static UserRepository repository;
     private ArrayList<User> users;
+    private int id;
 
     /**
      * Se inicializa las propiedades estáticas del repositorio
@@ -36,6 +37,7 @@ public class UserRepository {
         users.add(new User(1, "lourdes", "Lourdes18?", "Lourdes Rodriguez", "lourdes@iesportada.org","/img/lourdes", TypeUser.MANAGER));
         users.add(new User(2, "jesus", "Jesus19?", "Jesus González", "jesus@iesportada.org", "/img/jesus", TypeUser.TECHNICAL));
         users.add(new User(3, "ely", "Ely11111111", "Ely", "ely@iesportada.org", "/img/angela", TypeUser.ADMIN));
+        id = 4;
     }
 
     /**
@@ -57,6 +59,30 @@ public class UserRepository {
     public boolean validateCredentials(String useraux, String password) {
         for (User user:users){
             if(user.getUser().equals(useraux) && user.getPassword().equals(password))
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * Método que añade un usuario con solo tres campos
+     * @param useraux
+     * @param password
+     * @param email
+     */
+    public void add(String useraux, String password, String email) {
+        User user = new User(id++,useraux,password,useraux,email,"/igm/"+useraux,TypeUser.TECHNICAL);
+        add(user);
+    }
+
+    /**
+     * Método que comprueba si un usuario está en el sistema
+     * @param useraux
+     * @return
+     */
+    public boolean userExists(String useraux) {
+        for (User user:users){
+            if(user.getUser().equals(useraux))
                 return true;
         }
         return false;

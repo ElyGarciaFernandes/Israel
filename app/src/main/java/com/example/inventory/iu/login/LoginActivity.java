@@ -13,7 +13,7 @@ import android.widget.ProgressBar;
 
 import com.example.inventory.R;
 import com.example.inventory.iu.InventoryActivity;
-import com.example.inventory.iu.signup.SingUpActivity;
+import com.example.inventory.iu.signup.SignUpActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     public void showSignUp(View view){
-        Intent intent = new Intent( LoginActivity.this, SingUpActivity.class);
+        Intent intent = new Intent( LoginActivity.this, SignUpActivity.class);
         startActivity(intent);
     }
 
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
      */
     @Override
     public void onAuthenticationError() {
-
+        Snackbar.make(findViewById(android.R.id.content),getResources().getString(R.string.err_user_exists),Snackbar.LENGTH_LONG).show();
     }
 
     /**
